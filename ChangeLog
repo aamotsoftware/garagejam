@@ -1,0 +1,228 @@
+commit e8eea668bad99236beb8667d6f71c7b4cc607651
+Author: Ole Aamot <ole.aamot@gmail.com>
+Date:   Tue Jan 23 04:12:09 2024 +0100
+
+    GarageJam for GNOME (version 2.0) - Stable Release
+
+ ChangeLog            | 30 +++++++++++++++++
+ aclocal.m4           | 36 ++++++++++----------
+ configure            | 92 ++++++++++++++++++++++++++++++++++------------------
+ configure.ac         |  4 +--
+ garagejam.spec.in    |  3 ++
+ src/garagejam.xml.in |  2 +-
+ 6 files changed, 115 insertions(+), 52 deletions(-)
+
+commit 5ad485be0e6915ab3195130cc3150878a82a9967
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Wed Aug 16 14:37:38 2023 +0200
+
+    GarageJam for GNOME (version 1.0) - Initial Release
+
+ ChangeLog                                  |  21 +
+ NEWS                                       |   6 +-
+ configure                                  |  49 +-
+ configure.ac                               |   7 +-
+ data/garagejam.appdata.xml.in              |  15 +-
+ garagejam.spec.in                          |   6 +
+ po/POTFILES.in                             |   1 +
+ po/POTFILES.skip                           |   1 -
+ src/garagejam-gingerblue-app.c             |  16 +-
+ src/garagejam-gingerblue-config.c          |  93 ++--
+ src/garagejam-gingerblue-file.c            | 142 +++---
+ src/garagejam-gingerblue-knob.c            |   6 +-
+ src/garagejam-gingerblue-line.c            |  17 +-
+ src/garagejam-gingerblue-main-loop.c       |  18 +-
+ src/garagejam-gingerblue-main.c            | 645 +++++++++++++++++++-------
+ src/garagejam-gingerblue-record.c          | 155 ++++---
+ src/garagejam-gingerblue-song.c            |  25 +-
+ src/garagejam-gingerblue-studio-config.c   |  38 +-
+ src/garagejam-gingerblue-studio-location.c | 262 ++++++-----
+ src/garagejam-gingerblue-studio-player.c   | 711 +++++++++++++++--------------
+ src/garagejam-gingerblue-studio-stream.c   | 122 ++---
+ src/garagejam.c                            |  47 +-
+ 22 files changed, 1452 insertions(+), 951 deletions(-)
+
+commit 701f5c53f000ddf28d35c6b1f2f4d3b41e53a83d
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 17:05:12 2023 +0200
+
+    GarageJam for GNOME (version 0.8.0) Connect, Recording and Playback
+
+ ChangeLog                                |  14 ++++
+ Makefile.in                              |   1 +
+ aclocal.m4                               | 101 +++++++++++++++++++++++--
+ configure                                | 126 ++++++++++++++++++++-----------
+ configure.ac                             |   2 +-
+ data/Makefile.in                         |   1 +
+ data/garagejam.appdata.xml.in            |   3 +-
+ data/icons/Makefile.in                   |   1 +
+ etc/Makefile.in                          |   1 +
+ garagejam.spec.in                        |   6 ++
+ meson.build                              |   4 +-
+ src/garagejam-gingerblue-main.c          |  32 ++++----
+ src/garagejam-gingerblue-studio-stream.c |  16 +++-
+ 13 files changed, 235 insertions(+), 73 deletions(-)
+
+commit b1a8fbd7fbb1ff07c32d752b380a608f1f7ca3e6
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 09:15:02 2023 +0200
+
+    GarageJam for GNOME (version 0.6.0)
+
+ ChangeLog                                | 21 ++++++++++++
+ configure                                | 55 +++++++++++++-------------------
+ configure.ac                             |  2 +-
+ data/garagejam.desktop.in                |  2 +-
+ garagejam.spec.in                        |  3 ++
+ src/garagejam-gingerblue-studio-stream.c |  2 +-
+ 6 files changed, 49 insertions(+), 36 deletions(-)
+
+commit bafe9373bedb569e6f635482c3c42fdfff0dfe3c
+Author: Ole Kristian Aamot <olekaam@stud.ntnu.no>
+Date:   Mon Aug 7 08:37:09 2023 +0200
+
+    GarageJam version 0.5.0 (Connect friendly)
+
+ ChangeLog                                |  14 +++
+ Makefile.in                              |   1 -
+ aclocal.m4                               | 101 ++----------------
+ configure                                | 175 +++++++++++++------------------
+ configure.ac                             |   6 +-
+ data/Makefile.in                         |   1 -
+ data/garagejam.desktop.in                |   2 +-
+ data/icons/Makefile.in                   |   1 -
+ etc/Makefile.in                          |   1 -
+ garagejam.spec.in                        |   6 ++
+ src/garagejam-gingerblue-main.c          |  32 +++---
+ src/garagejam-gingerblue-studio-stream.c | 142 +++++++++----------------
+ src/garagejam-gingerblue-studio-stream.h |   2 +-
+ 13 files changed, 171 insertions(+), 313 deletions(-)
+
+commit e645fb0bc9cda66683d30285f83cbcd4927cb2b2
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Thu May 11 15:54:17 2023 +0200
+
+    GarageJam for GNOME (experimental release 0.3.0)
+
+ ChangeLog                     | 30 ++++++++++++++++++++++++++
+ configure                     | 49 ++++++++++++++++++-------------------------
+ configure.ac                  |  7 +++----
+ data/garagejam.appdata.xml.in | 23 ++++++++++++++++----
+ data/garagejam.desktop.in     | 18 ++++++++++++++++
+ garagejam.spec.in             |  7 +++++--
+ 6 files changed, 95 insertions(+), 39 deletions(-)
+
+commit 0ddf0a0c8c72f308a33d52d851064c035d0fa69d
+Author: Ole Aamot <ole@aamot.org>
+Date:   Mon May 1 05:40:41 2023 +0200
+
+    GarageJam for GNOME (development release 0.2.0)
+
+ configure                     |  40 +++++++--------
+ configure.ac                  |   6 +--
+ data/garagejam.appdata.xml.in |   6 +--
+ data/icons/garagejam.svg      | 111 ++++++++++++++++++++++++++++++++++++++++++
+ garagejam.spec.in             |   3 ++
+ po/POTFILES.in                |   1 -
+ 6 files changed, 140 insertions(+), 27 deletions(-)
+
+commit 909662fff3392b9a392275663ed30fde748e7458
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Sun Apr 30 17:06:28 2023 +0200
+
+    GarageJam for GNOME (stable release 0.1.0)
+
+ ChangeLog                       |  84 ++++++-
+ NEWS                            | 522 +---------------------------------------
+ configure                       |  20 +-
+ configure.ac                    |   2 +-
+ data/icons/Makefile.am          |  17 +-
+ data/icons/Makefile.in          | 106 +++++---
+ garagejam.spec.in               |   5 +-
+ src/garagejam-gingerblue-main.c |  22 +-
+ 8 files changed, 191 insertions(+), 587 deletions(-)
+
+commit c60fd87ebcf94a481d4d55569e312411d5451df0
+Author: Ole Kristian Aamot <ole@aamot.org>
+Date:   Sun Apr 30 12:29:23 2023 +0200
+
+    GarageJam for GNOME (version 0.0.1)
+
+ AUTHORS                                            |    1 +
+ COPYING                                            |  674 ++
+ ChangeLog                                          |    4 +
+ INSTALL                                            |  368 +
+ Makefile.am                                        |   14 +
+ Makefile.in                                        |  822 +++
+ NEWS                                               |  524 ++
+ README                                             |    1 +
+ TODO                                               |    8 +
+ aclocal.m4                                         | 2240 ++++++
+ autogen.sh                                         |   26 +
+ compile                                            |  348 +
+ config.h.in                                        |   86 +
+ configure                                          | 7791 ++++++++++++++++++++
+ configure.ac                                       |   54 +
+ data/Makefile.am                                   |   32 +
+ data/Makefile.in                                   |  724 ++
+ data/garagejam.appdata.xml.in                      |   15 +
+ data/garagejam.desktop.in.in                       |   18 +
+ data/garagejam.gschema.xml                         |    5 +
+ data/garagejam.gschema.xml.in                      |   75 +
+ data/icons/Makefile.am                             |   14 +
+ data/icons/Makefile.in                             |  450 ++
+ data/icons/hicolor/scalable/apps/garagejam.svg     |  111 +
+ .../hicolor/symbolic/apps/garagejam-symbolic.svg   |    4 +
+ data/icons/meson.build                             |   13 +
+ data/meson.build                                   |   43 +
+ depcomp                                            |  791 ++
+ etc/Makefile.am                                    |    3 +
+ etc/Makefile.in                                    |  492 ++
+ etc/icecast-server.xml                             |  172 +
+ garagejam.spec.in                                  |   65 +
+ install-sh                                         |  541 ++
+ meson.build                                        |   39 +
+ missing                                            |  215 +
+ po/LINGUAS                                         |    1 +
+ po/POTFILES.in                                     |   17 +
+ po/POTFILES.skip                                   |    5 +
+ po/meson.build                                     |    2 +
+ po/nb.po                                           |  185 +
+ src/Makefile.am                                    |   15 +
+ src/garagejam-gingerblue-app.c                     |   30 +
+ src/garagejam-gingerblue-app.h                     |    5 +
+ src/garagejam-gingerblue-chord.h                   |   50 +
+ src/garagejam-gingerblue-config.c                  |   69 +
+ src/garagejam-gingerblue-config.h                  |    6 +
+ src/garagejam-gingerblue-container.h               |   10 +
+ src/garagejam-gingerblue-file.c                    |  139 +
+ src/garagejam-gingerblue-file.h                    |   17 +
+ src/garagejam-gingerblue-knob.c                    |   21 +
+ src/garagejam-gingerblue-knob.h                    |   11 +
+ src/garagejam-gingerblue-library.h                 |    5 +
+ src/garagejam-gingerblue-line.c                    |   21 +
+ src/garagejam-gingerblue-line.h                    |   11 +
+ src/garagejam-gingerblue-main-loop.c               |   24 +
+ src/garagejam-gingerblue-main-loop.h               |    8 +
+ src/garagejam-gingerblue-main.c                    |  539 ++
+ src/garagejam-gingerblue-main.h                    |   11 +
+ src/garagejam-gingerblue-record.c                  |  167 +
+ src/garagejam-gingerblue-record.h                  |   31 +
+ src/garagejam-gingerblue-song.c                    |   27 +
+ src/garagejam-gingerblue-song.h                    |   15 +
+ src/garagejam-gingerblue-storage.h                 |    8 +
+ src/garagejam-gingerblue-studio-config.c           |   33 +
+ src/garagejam-gingerblue-studio-config.h           |    6 +
+ src/garagejam-gingerblue-studio-location.c         |  199 +
+ src/garagejam-gingerblue-studio-location.h         |   13 +
+ src/garagejam-gingerblue-studio-player-kb.h        |   35 +
+ src/garagejam-gingerblue-studio-player.c           |  762 ++
+ src/garagejam-gingerblue-studio-player.h           |   71 +
+ src/garagejam-gingerblue-studio-stream.c           |  120 +
+ src/garagejam-gingerblue-studio-stream.h           |    6 +
+ src/garagejam-gingerblue-wizard.h                  |   13 +
+ src/garagejam.c                                    |   59 +
+ src/garagejam.h                                    |   49 +
+ src/garagejam.xml.in                               |   12 +
+ src/meson.build                                    |   19 +
+ 77 files changed, 19630 insertions(+)
