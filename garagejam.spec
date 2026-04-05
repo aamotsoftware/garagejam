@@ -1,11 +1,13 @@
 Name:           garagejam
-Version:        5.0.0
+Version:        6.0.1
 Release:        1%{?dist}
-Summary:        GarageJam is Music Studio Recording Software for GNOME
-License:        GPLv3+
-URL:            http://www.garagejam.org/
+Summary:        Music Studio Recording Software for GNOME
+License:        GPL-3.0-or-later
+URL:            https://www.garagejam.org/
 Source:         https://www.garagejam.org/src/%{name}-%{version}.tar.xz
 
+BuildRequires:  gcc
+BuildRequires:  make
 BuildRequires:  gtk4-devel
 BuildRequires:  pango
 BuildRequires:  libchamplain-devel
@@ -24,6 +26,14 @@ Requires:       gstreamer1-plugins-ugly-free >= 1.8.3
 Requires:       geoclue2-devel >= 2.5.7
 Requires:       geocode-glib >= 3.20.1
 Requires:       libshout-devel >= 2.4.3
+
+%package devel
+Summary: Development files for garagejam
+Requires: %{name}%{?_isa} = %{version}-%{release}
+
+%description devel
+Header files and development libraries for building software
+that uses garagejam.
 
 %description
 GarageJam is Music Studio Recording Software for GNOME
@@ -58,7 +68,13 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 %{_includedir}/%{name}
 %{_metainfodir}/%{name}.appdata.xml
 
+%files devel
+%{_includedir}/garagejam/
+
 %changelog
+* Fri Mar 06 2026 Ole Aamot <ole@aamot.org> - 6.0.0-0
+- Stable release
+
 * Fri Mar 14 2025 Ole Aamot <ole@aamot.org> - 5.0.0-0
 - Development release
 

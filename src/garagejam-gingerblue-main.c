@@ -278,7 +278,7 @@ static void gb_assistant_button_clicked(GtkButton *button,
 				GST_TAG_TITLE, g_get_real_name(),
 				GST_TAG_ARTIST, g_get_real_name(),
 				GST_TAG_ALBUM, "Voicegram",
-				GST_TAG_COMMENT, "GarageJam 5.0.0",
+				GST_TAG_COMMENT, "GarageJam 6.0.1",
 				GST_TAG_DATE,
 				g_date_time_format_iso8601(datestamp),
 				NULL);

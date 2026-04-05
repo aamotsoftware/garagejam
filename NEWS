@@ -1,4 +1,26 @@
 =============
+Version 6.0.1
+=============
+
+	* configure.ac: Build 6.0.1 on Fedora Core Rawhide
+	* garagejam.spec.in: Add garagejam-devel package
+	* src/garagejam-gingerblue-main.c: Add Version
+
+=============
+Version 6.0.0
+=============
+
+	* configure.ac: Build 6.0.0 on Fedora Core 44
+	* src/garagejam-gingerblue-main.c: Add Recording
+
+=============
+Version 5.0.0
+=============
+
+	* configure.ac: Build 5.0.0 on Fedora Core 43
+	* src/garagejam-gingerblue-main.c: Add Playlist
+
+=============
 Version 4.0.0
 =============
 
