@@ -1,49 +1,84 @@
-AC_PREREQ([2.72])
-AC_INIT([garagejam],[6.0.1],[ole@aamot.org])
-AM_INIT_AUTOMAKE([-Wno-portability 1.11 no-dist-gzip dist-xz tar-ustar subdir-objects])
-AM_MAINTAINER_MODE
-AC_CONFIG_SRCDIR([src/garagejam-gingerblue-main.c])
+dnl configure.ac for GarageJam
+dnl Copyright (C) 2026 Ole Kristian Aamot <ole.aamot@aamotinnovation.com>
+dnl SPDX-License-Identifier: GPL-3.0-or-later
+
+AC_PREREQ([2.69])
+AC_INIT([GarageJam], [8.0.1],
+        [https://www.github.com/oleaamot-dev/music/issues],
+        [garagejam], [https://www.garagejam.org/])
+AC_CONFIG_SRCDIR([src/main.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_AUX_DIR([build-aux])
+
+AM_INIT_AUTOMAKE([1.15 gnu subdir-objects dist-xz no-dist-gzip tar-ustar -Wall -Werror -Wno-override])
+AM_SILENT_RULES([yes])
+
 AC_PROG_CC
+AC_PROG_SED
+PKG_PROG_PKG_CONFIG([0.29])
 
-# ***********
-# Translation
-# ***********
+dnl ------------------------------------------------------------------
+dnl Dependencies
+dnl ------------------------------------------------------------------
 
-AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.50.1])
+GLIB_REQUIRED=2.76
+GTK_REQUIRED=4.12
+ADW_REQUIRED=1.5
+GST_REQUIRED=1.20
 
-GETTEXT_PACKAGE=AC_PACKAGE_NAME
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Gettext package.])
+PKG_CHECK_MODULES([GARAGEJAM], [
+  glib-2.0 >= $GLIB_REQUIRED
+  gio-2.0 >= $GLIB_REQUIRED
+  gtk4 >= $GTK_REQUIRED
+  libadwaita-1 >= $ADW_REQUIRED
+  gstreamer-1.0 >= $GST_REQUIRED
+])
 
-PKG_CHECK_MODULES(GARAGEJAM,
-                  glib-2.0 >= 2.38.0 \
-                  gobject-2.0 >= 2.38.0 \
-                  gstreamer-1.0 >= 1.0 \
-		  gstreamer-player-1.0 >= 1.0 \
-		  gstreamer-plugins-bad-1.0 \
-                  gstreamer-plugins-base-1.0 \
-		  gstreamer-tag-1.0 >= 1.0 \
-                  gstreamer-video-1.0 \
-                  gtk+-3.0 >= 3.24.23 \
-                  libxml-2.0 >= 2.0 \
-                  pangoft2 >= 0.28)
-GARAGEJAM_PKG_DEPS="glib-1.0 gobject-2.0 gstreamer-1.0 gstreamer-player-1.0 gstreamer-plugins-bad-1.0 gstreamer-plugins-base-1.0 gstreamer-tag-1.0 gstreamer-video-1.0 gtk+-3.0 libxml-2.0 pangoft2"
+PKG_CHECK_MODULES([GJCORE], [
+  glib-2.0 >= $GLIB_REQUIRED
+  gio-2.0 >= $GLIB_REQUIRED
+])
 
-AC_SUBST(GARAGEJAM_LIBS)
-AC_SUBST(GARAGEJAM_CFLAGS)
-AC_SUBST(GARAGEJAM_PKG_DEPS)
+AC_SEARCH_LIBS([floor], [m])
+
+dnl gtk-update-icon-cache / update-desktop-database are optional, run at install
+AC_PATH_PROG([DESKTOP_FILE_VALIDATE], [desktop-file-validate])
+AC_PATH_PROG([APPSTREAM_UTIL], [appstreamcli])
+AM_CONDITIONAL([HAVE_DESKTOP_FILE_VALIDATE], [test -n "$DESKTOP_FILE_VALIDATE"])
+AM_CONDITIONAL([HAVE_APPSTREAM_UTIL], [test -n "$APPSTREAM_UTIL"])
+
+dnl ------------------------------------------------------------------
+dnl Internationalisation (translations are installed from po/ when added)
+dnl ------------------------------------------------------------------
+
+GETTEXT_PACKAGE=garagejam
+AC_SUBST([GETTEXT_PACKAGE])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Gettext domain])
+
+dnl ------------------------------------------------------------------
+dnl Compiler warnings
+dnl ------------------------------------------------------------------
+
+AC_ARG_ENABLE([werror],
+  [AS_HELP_STRING([--enable-werror], [treat compiler warnings as errors])],
+  [], [enable_werror=no])
+
+WARN_CFLAGS="-Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wformat=2 -Wshadow=local -Wstrict-prototypes"
+AS_IF([test "x$enable_werror" = "xyes"], [WARN_CFLAGS="$WARN_CFLAGS -Werror"])
+AC_SUBST([WARN_CFLAGS])
 
 AC_CONFIG_FILES([
-Makefile
-garagejam.spec
-data/Makefile
-data/garagejam.appdata.xml
-data/garagejam.desktop.in
-data/icons/Makefile
-po/Makefile.in
-src/Makefile
-src/garagejam.xml
+  Makefile
+  data/garagejam.1
 ])
 AC_OUTPUT
+
+AC_MSG_RESULT([
+  $PACKAGE_NAME $PACKAGE_VERSION
+
+  prefix:          ${prefix}
+  compiler:        ${CC}
+  CFLAGS:          ${CFLAGS}
+  warnings:        ${WARN_CFLAGS}
+])
